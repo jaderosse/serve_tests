@@ -14,7 +14,6 @@ driver.get("https://www.saucedemo.com/")
 username = "standard_user"
 pw = "secret_sauce"
 
-
 #util functions
 def add_to_cart(item_title, title_xpath):
 	#turns title into id format
@@ -35,7 +34,6 @@ def add_to_cart(item_title, title_xpath):
 	#returns to Products page
 	continue_shopping_button = driver.find_element(By.ID, "continue-shopping")
 	continue_shopping_button.click()
-
 
 def remove_from_cart(item_title):
 	cart_button = driver.find_element(By.ID, "shopping_cart_container")
@@ -73,13 +71,11 @@ def test_add_item_to_cart():
 	item_to_add = "Sauce Labs Fleece Jacket"
 	first_title_xpath = "//div[@class='cart_item']/div[2]/a/div"
 	add_to_cart(item_to_add, first_title_xpath)
-	
 
 def test_add_second_item_to_cart():
 	item_to_add = "Sauce Labs Onesie"
 	second_title_xpath = "//div[@class='cart_item'][2]/div[2]/a/div"
 	add_to_cart(item_to_add, second_title_xpath)
-
 
 def test_cart_items():
 	cart_badge = driver.find_element(By.CLASS_NAME, "shopping_cart_badge")
@@ -90,3 +86,4 @@ def test_remove_item():
 	item_to_remove = "Sauce Labs Onesie"
 	remove_from_cart(item_to_remove)
 	assert driver.find_element(By.XPATH, "//div[@class='cart_item']/div[2]/a/div").text == "Sauce Labs Fleece Jacket"
+
