@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 @pytest.fixture(scope="session")
 def driver():
-	#initialize driver with ChromeOptions to disable 'password breach' error
+	#Add ChromeOptions to disable 'password breach' error
 	chrome_options = webdriver.ChromeOptions()
 	chrome_options.add_experimental_option("detach", True) # keeps the browser window open
 	prefs = {
@@ -18,8 +18,8 @@ def driver():
 	}
 	chrome_options.add_experimental_option("prefs", prefs)
 
+	#Initialize driver and navigate to url
 	driver = webdriver.Chrome(options=chrome_options)
-
 	driver.get("https://www.saucedemo.com/")
 
 	yield driver
@@ -105,5 +105,4 @@ def test_remove_item(driver):
 	cart_badge = driver.find_element(By.CLASS_NAME, "shopping_cart_badge")
 	cart_count = int(cart_badge.text)
 	assert cart_count == 1
-
 
